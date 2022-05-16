@@ -8,18 +8,32 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, DidFetched {
+
     @IBOutlet var bitcoinLabel: UILabel!
     @IBOutlet var currencyLabel: UILabel!
     @IBOutlet var currencyPicker: UIPickerView!
     
-    let coinManager = CoinManager()
+    var coinManager = CoinManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
+
+        coinManager.delegate1 = self
+    }
+    
+    func didFetched(_ coinManager: CoinManager, coin: Coin) {
+        DispatchQueue.main.async { [self] in
+            bitcoinLabel.text = "\(String(format: "%.2f", coin.rate))"
+            currencyLabel.text = "\(coin.asset_id_quote)"
+        }
+    }
+    
+    func didFailed(error: Error) {
+        print(error)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -35,7 +49,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         let selectedCurrency = coinManager.currencyArray[row]
         coinManager.getCoinPrice(for: selectedCurrency)
     }
