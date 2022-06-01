@@ -10,22 +10,52 @@ import Foundation
 
 struct CalculatorLogic {
     
-    var number: Double
+    private var number: Double?
     
-    init(number: Double){
+    private var intermediateCalculation: (n1: Double, calcMethod: String)?
+
+//    init(number: Double){
+//        self.number = number
+//    }
+    
+    mutating func setNumber(_ number: Double) {
         self.number = number
     }
     
-    func calc(symbol: String) ->  Double? {
+    mutating func calc(symbol: String) ->  Double? {
 
-        if symbol == "+/-" {
-            return number * -1
-        }else if symbol == "AC" {
-            return 0
-        }else if symbol == "%" { //퍼센티지로 바꿔줌
-            return number * 0.01
+        if let n = number {
+            if symbol == "+/-" {
+                return n * -1
+            }else if symbol == "AC" {
+                return 0
+            }else if symbol == "%" { //퍼센티지로 바꿔줌
+                return n * 0.01
+            }else if symbol == "=" {
+                return performTwoNumberCalc(n2: n)
+            }else { // +, - , *, %
+                intermediateCalculation = (n1: n, calcMethod: symbol)
+            }
         }
-        
+        return nil
+    }
+    
+    private func performTwoNumberCalc(n2: Double) -> Double? {
+        if let n1 = intermediateCalculation?.n1, let operation = intermediateCalculation?.calcMethod {
+            switch operation {
+            case "+":
+                return n1 + n2
+            case "-":
+                return n1 - n2
+            case "×":
+                return n1 * n2
+            case "÷":
+                return n1 / n2
+            default:
+                fatalError("operation passed in not matched")
+            }
+        }
         return nil
     }
 }
+

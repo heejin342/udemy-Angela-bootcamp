@@ -26,17 +26,19 @@ class ViewController: UIViewController {
             displayLabel.text = String(newValue)
         }
     }
-    
+
+    private var calcutator = CalculatorLogic()
+
     @IBAction func calcButtonPressed(_ sender: UIButton) {
+
         isFinishedTypingNumber = true
         
+        calcutator.setNumber(displayValue)
+        
         if let calcMethod = sender.currentTitle {
-            let calcutator = CalculatorLogic(number: displayValue)
-            
-            guard let result = calcutator.calc(symbol: calcMethod) else {
-                fatalError("nil")
+            if let result = calcutator.calc(symbol: calcMethod) {
+                displayValue = result
             }
-            displayValue = result
         }
     }
     
