@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(#function)
         print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
+        //print(Realm.Configuration.defaultConfiguration.fileURL)
         
+        do {
+            _ = try Realm()
+//            try realm.write {
+//                realm.add(data)
+//            }
+        }catch {
+             print("Error initailising new \(error)")
+        }
         return true
     }
 

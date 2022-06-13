@@ -1,20 +1,34 @@
 PODS:
   - Alamofire (5.6.1)
+  - Realm (10.28.0):
+    - Realm/Headers (= 10.28.0)
+  - Realm/Headers (10.28.0)
+  - RealmSwift (10.28.0):
+    - Realm (= 10.28.0)
   - SnapKit (5.6.0)
+  - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
   - Alamofire
+  - RealmSwift
   - SnapKit (~> 5.6.0)
+  - SwipeCellKit
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Realm
+    - RealmSwift
     - SnapKit
+    - SwipeCellKit
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  Realm: a0dd4e07530faaa327244ddb4ecb445c98f0537a
+  RealmSwift: 625a21f03e01e80f6b9b86bade269ebebcd7892c
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: 6f807607bf03fdc9e9fd242787af5cede9ee0d3e
+PODFILE CHECKSUM: 8b8a1c198014b994103a34ce0400b003ae50520c
 
 COCOAPODS: 1.11.3
