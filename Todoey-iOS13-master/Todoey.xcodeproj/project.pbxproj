@@ -15,6 +15,7 @@
 		EB2BE506239524DC00FB933B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE504239524DC00FB933B /* LaunchScreen.storyboard */; };
 		F05B0DBA28574D440029CD3C /* Item3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05B0DB928574D440029CD3C /* Item3.swift */; };
 		F05B0DBC28574D670029CD3C /* Category3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05B0DBB28574D670029CD3C /* Category3.swift */; };
+		F05B0DBE2857803E0029CD3C /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05B0DBD2857803E0029CD3C /* SwipeTableViewController.swift */; };
 		F0CB9836284B25D7002FCD94 /* Item2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CB9835284B25D7002FCD94 /* Item2.swift */; };
 		F0CB985B284B81FC002FCD94 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0CB9859284B81FC002FCD94 /* DataModel.xcdatamodeld */; };
 		F0CB9880284B9D51002FCD94 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CB987F284B9D51002FCD94 /* CategoryTableViewController.swift */; };
@@ -32,6 +33,7 @@
 		EB2BE507239524DC00FB933B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F05B0DB928574D440029CD3C /* Item3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item3.swift; sourceTree = "<group>"; };
 		F05B0DBB28574D670029CD3C /* Category3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category3.swift; sourceTree = "<group>"; };
+		F05B0DBD2857803E0029CD3C /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		F0CB9835284B25D7002FCD94 /* Item2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item2.swift; sourceTree = "<group>"; };
 		F0CB985A284B81FC002FCD94 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		F0CB987F284B9D51002FCD94 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				F0CB987F284B9D51002FCD94 /* CategoryTableViewController.swift */,
 				EB2BE4FD239524DB00FB933B /* TodoListTableViewController.swift */,
+				F05B0DBD2857803E0029CD3C /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F05B0DBE2857803E0029CD3C /* SwipeTableViewController.swift in Sources */,
 				F05B0DBA28574D440029CD3C /* Item3.swift in Sources */,
 				EB2BE4FE239524DB00FB933B /* TodoListTableViewController.swift in Sources */,
 				F0CB985B284B81FC002FCD94 /* DataModel.xcdatamodeld in Sources */,

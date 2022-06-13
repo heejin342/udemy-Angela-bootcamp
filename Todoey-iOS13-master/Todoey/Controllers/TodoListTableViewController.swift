@@ -9,8 +9,9 @@
 import UIKit
 //import CoreData
 import RealmSwift
+import ChameleonFramework
 
-class TodoListTableViewController: UITableViewController {
+class TodoListTableViewController: SwipeTableViewController {
 
 //    var itemArray = [Item3]()
     var todoItems: Results<Item3>?
@@ -21,7 +22,9 @@ class TodoListTableViewController: UITableViewController {
             loadItems()
         }
     }
-
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     // 기존 userDefaults. userDefualt.plist 형태로 앱 내에 저장된다.
     // let defaults = UserDefaults.standard
     
@@ -60,7 +63,24 @@ class TodoListTableViewController: UITableViewController {
 //        searchBar.delegate = self
 
 //        loadItems()
+        
+        tableView.separatorStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let colourHex = selectedCategotry?.colour {
+            title = selectedCategotry!.name
+            
+            guard let navBar = navigationController?.navigationBar else { fatalError("nav is not exist") }
 
+            if let navBarColor = UIColor(hexString: colourHex) {
+                navBar.backgroundColor = navBarColor
+                navBar.tintColor = ContrastColorOf(navBarColor, returnFlat: true)
+                navBar.barTintColor = navBarColor
+                navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColor, returnFlat: true)]
+                searchBar.barTintColor = navBarColor
+            }
+        }
     }
 
 
@@ -73,10 +93,17 @@ class TodoListTableViewController: UITableViewController {
         // 재사용이 안되는 셀. 체크를 하고 내려도 체크 안된채로 보인다.
         // let cell = UITableViewCell(style: .default, reuseIdentifier: "TodoItemCell")
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TotoItemCell", for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "TotoItemCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
 
         if let item = todoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
+            
+            if let colour = UIColor(hexString: selectedCategotry!.colour)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+                cell.backgroundColor = colour
+                cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+            }
+
             cell.accessoryType = item.done ? .checkmark : .none
         }else {
             cell.textLabel?.text = "No items Added"
@@ -192,6 +219,18 @@ class TodoListTableViewController: UITableViewController {
     func loadItems() {
         todoItems = selectedCategotry?.items.sorted(byKeyPath: "title", ascending: true)
         tableView.reloadData()
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let item = todoItems?[indexPath.row] {
+            do {
+                try realm.write {
+                        realm.delete(item)
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 
